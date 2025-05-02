@@ -1,0 +1,92 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.4.4'
+    id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // ✅ 웹 기능 (logback 제거)
+    implementation('org.springframework.boot:spring-boot-starter-web') {
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+    }
+    implementation('org.springframework.boot:spring-boot-starter-webflux') {
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+    }
+    implementation('org.springframework.boot:spring-boot-starter-security') {
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+    }
+    implementation('org.springframework.boot:spring-boot-starter-data-jpa') {
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+    }
+
+
+
+    // ✅ SLF4J 구현체 추가 (NOP 방지)
+    runtimeOnly 'org.slf4j:slf4j-simple:2.0.9' // 또는 log4j, logback 제외 시 필수
+
+    // ✅ Lombok
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    // ✅ 개발 편의 기능
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+    // ✅ 인증/검증
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+    // ✅ JWT 관련 의존성
+    implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
+    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
+
+    // ✅ DB
+    implementation 'mysql:mysql-connector-java:8.0.33'
+    runtimeOnly 'com.h2database:h2'
+
+    // ✅ 테스트
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+    }
+    testImplementation 'org.springframework.security:spring-security-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+// ✅ logback 완전 제거
+configurations.all {
+    exclude group: 'ch.qos.logback', module: 'logback-classic'
+    exclude group: 'ch.qos.logback', module: 'logback-core'
+}
+
+// ✅ 기존 jar는 꺼두고, 실행용 fat jar 활성화
+jar {
+    enabled = false
+}
+
+bootJar {
+    enabled = true
+}
