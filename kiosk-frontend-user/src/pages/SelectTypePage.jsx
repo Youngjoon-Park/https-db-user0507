@@ -1,3 +1,4 @@
+// 📁 src/pages/SelectTypePage.jsx
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -16,7 +17,6 @@ const SelectTypePage = () => {
       </h1>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-3xl">
-        {/* 매장 식사 */}
         <div
           className="bg-white border-4 border-gray-300 shadow-lg rounded-2xl p-10 text-center cursor-pointer hover:bg-gray-50 hover:scale-105 transition transform"
           onClick={() => handleSelect('store')}
@@ -26,7 +26,6 @@ const SelectTypePage = () => {
           <p className="text-gray-600">매장에서 드실게요</p>
         </div>
 
-        {/* 포장 주문 */}
         <div
           className="bg-white border-4 border-gray-300 shadow-lg rounded-2xl p-10 text-center cursor-pointer hover:bg-gray-50 hover:scale-105 transition transform"
           onClick={() => handleSelect('takeout')}

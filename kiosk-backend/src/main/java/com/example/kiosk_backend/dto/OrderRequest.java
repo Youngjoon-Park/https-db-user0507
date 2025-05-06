@@ -8,12 +8,13 @@ import lombok.Setter;
 @Getter
 @Setter
 public class OrderRequest {
+    private String phoneNumber; // ✅ 인증 후 저장용 (선택 사항)
     private List<Item> items;
 
     @Getter
     @Setter
     public static class Item {
-        private Long menuId; // ✅ 반드시 menuId 라는 이름으로 유지
+        private Long menuId;
         private int quantity;
     }
 }
