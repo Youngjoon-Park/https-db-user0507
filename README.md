@@ -194,5 +194,33 @@ headers.setBasicAuth("API_KEY", "API_SECRET");
 | 단기 테스트만 필요     | CoolSMS (단, 발신번호 문제 없을 때) |
 | 실서비스 or 안정성 중요 | ✅ **네이버 클라우드 SENS 강력 추천** |
 
+✅ CoolSMS 대신 네이버 클라우드 SENS로 문자 인증 구현하기
+💡 왜 SENS?
+항목	            CoolSMS	         네이버 SENS
+발신번호 제한	   통신사 해제 필요	한 번 등록하면 안정적
+테스트 무료 건수	약 50건	         하루 20건 (개발용)
+요금	            건당 8~9원	      건당 9원 (유사)
+안정성            	중	               높음 (KT망 기반)
+REST API 제공      O	               O (Java SDK도 제공)
 
+✅ SENS 사용 절차 요약 (Step-by-step)
+순서	                        내용	         비고
+1️⃣	https://www.ncloud.com 회원가입	이메일 + 휴대폰 인증
+2️⃣	콘솔 → 프로젝트 생성	예: kiosk-dev
+3️⃣	서비스 신청: SENS	"SMS 인증 API" 사용 신청
+4️⃣	인증 정보 발급	Access Key / Secret Key
+5️⃣	발신번호 등록	본인번호 인증 필요
+6️⃣	API 연동	REST 또는 Java SDK 사용
+
+✅ 실제 연동할 정보 예시 (application.yml)
+
+naver-cloud:
+  access-key: YOUR_ACCESS_KEY
+  secret-key: YOUR_SECRET_KEY
+  service-id: YOUR_SERVICE_ID
+  sender-phone: 01012345678
+✅ 단점은?
+가입 후 설정이 살짝 복잡 (초기 30~40분 소요)
+
+콘솔에 익숙하지 않으면 진입장벽
 
