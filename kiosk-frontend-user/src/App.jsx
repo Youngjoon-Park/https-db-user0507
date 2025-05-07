@@ -6,6 +6,7 @@ import SelectTypePage from './pages/SelectTypePage';
 import MenuPage from './pages/MenuPage';
 import CartPage from './pages/CartPage';
 import OrderProcessingPage from './pages/OrderProcessingPage';
+import PhoneAuthPage from './pages/PhoneAuthPage'; // 상대 경로 맞게
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
@@ -59,6 +60,8 @@ function App() {
           }
         />
         <Route path="/processing" element={<OrderProcessingPage />} />
+
+        <Route path="/phone-auth" element={<PhoneAuthPage />} />
       </Routes>
     </Router>
   );

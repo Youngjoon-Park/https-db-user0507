@@ -35,6 +35,7 @@ public class WebSecurityConfig {
                                 .csrf().disable()
                                 .authorizeHttpRequests(auth -> auth
                                                 // ✅ 인증 없이 접근 허용 (순서 중요)
+                                                .requestMatchers("/api/auth/**").permitAll() // 🔥 인증 번호 관련은 여기!
                                                 .requestMatchers("/api/user/**").permitAll()
                                                 .requestMatchers("/api/admin/login").permitAll()
                                                 .requestMatchers("/login", "/signup", "/user", "/h2-console/**")

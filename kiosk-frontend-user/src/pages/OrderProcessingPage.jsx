@@ -17,20 +17,61 @@ const OrderProcessingPage = () => {
   }, [navigate]);
 
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center bg-white p-6">
-      <h1 className="text-2xl font-bold mb-4">🛠 주문 처리 중입니다...</h1>
-      <p className="text-gray-600 mb-6">아래 주문 내역을 확인해주세요</p>
+    <>
+      {/* ✅ 상단 고정 내비게이션 */}
+      <div
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          backgroundColor: 'white',
+          padding: '12px 20px',
+          display: 'flex',
+          justifyContent: 'space-between',
+          boxShadow: '0 2px 5px rgba(0,0,0,0.1)',
+          zIndex: 1000,
+        }}
+      >
+        <button onClick={() => navigate('/select')}>🏠 홈</button>
+        <button onClick={() => navigate(-1)}>⬅ 뒤로</button>
+      </div>
 
-      <ul className="mb-6">
-        {cartItems.map((item) => (
-          <li key={item.id}>
-            {item.name} - {item.quantity}개
-          </li>
-        ))}
-      </ul>
+      {/* ✅ 본문 영역 */}
+      <div
+        style={{
+          paddingTop: '90px',
+          minHeight: '100vh',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor: 'white',
+          padding: '20px',
+        }}
+      >
+        <h1
+          style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '20px' }}
+        >
+          🛠 주문 처리 중입니다...
+        </h1>
+        <p style={{ color: '#666', marginBottom: '20px' }}>
+          아래 주문 내역을 확인해주세요
+        </p>
 
-      <div className="text-4xl animate-bounce">⏳</div>
-    </div>
+        <ul style={{ marginBottom: '30px' }}>
+          {cartItems.map((item) => (
+            <li key={item.id}>
+              {item.name} - {item.quantity}개
+            </li>
+          ))}
+        </ul>
+
+        <div style={{ fontSize: '40px', animation: 'bounce 1.5s infinite' }}>
+          ⏳
+        </div>
+      </div>
+    </>
   );
 };
 
