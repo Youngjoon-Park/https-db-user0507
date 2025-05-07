@@ -204,7 +204,9 @@ headers.setBasicAuth("API_KEY", "API_SECRET");
 REST API 제공      O	               O (Java SDK도 제공)
 
 ✅ SENS 사용 절차 요약 (Step-by-step)
+
 순서	                        내용	         비고
+
 1️⃣	https://www.ncloud.com 회원가입	이메일 + 휴대폰 인증
 
 2️⃣	콘솔 → 프로젝트 생성	예: kiosk-dev
@@ -227,7 +229,9 @@ naver-cloud:
   service-id: YOUR_SERVICE_ID
   
   sender-phone: 01012345678
+  
 ✅ 단점은?
+
 가입 후 설정이 살짝 복잡 (초기 30~40분 소요)
 
 콘솔에 익숙하지 않으면 진입장벽
