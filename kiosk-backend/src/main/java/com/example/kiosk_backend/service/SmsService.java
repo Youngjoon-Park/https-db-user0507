@@ -17,7 +17,7 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class SmsService {
 
-    private final String apiKey = "EGXANOOMILTPOQ8B7AJFAEJLQNZYEW8D";
+    private final String apiKey = "";
     private final String apiSecret = "NCS7CM6AWJRBUA47";
     private final String senderPhone = "01093043225";
 
